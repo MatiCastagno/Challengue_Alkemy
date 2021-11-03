@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+    <form  th:action="@{/guardarPerso}" method="POST"  enctype="multipart/form-data">
+    	<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" name="nombre" placeholder="Ingrese su nombre..." th:value="${name}">
+          <label for="file" class="form-label">Imagen:</label>
+          <input type="file" class="form-control" id="file" aria-describedby="emailHelp" name="imagen">
+          <label for="edad" class="form-label">Edad:</label>
+          <input type="text" class="form-control" id="edad" aria-describedby="emailHelp" name="edad" placeholder="Ingrese su edad..." th:value="${edad}">
+          <label for="peso" class="form-label">Peso:</label>
+          <input type="text" class="form-control" id="peso" aria-describedby="emailHelp" name="peso" placeholder="Ingrese su peso..." th:value="${peso}">
+          <label for="historia" class="form-label">Historia:</label>
+          <input type="text" class="form-control" id="historia" aria-describedby="emailHelp" name="historia" placeholder="Ingrese historia..." th:value="${historia}">
+        </div>
+        <div class="mb-3 form-check">
+          <label class="form-check-label" for="exampleCheck1">Recordar</label>
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </form>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
+</html>
