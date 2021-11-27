@@ -12,24 +12,20 @@
 
 <body>
 	<div th:replace="fragments :: navbar"></div>
-	<form th:action="@{/Perso/guardarPerso}" method="POST" enctype="multipart/form-data">
+	<form th:action="@{/Perso/update/__${perso.id}__}" method="POST" enctype="multipart/form-data">
 		<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
 		<p th:if="${titulo != null}" th:text="${titulo}" style="color: rgb(0, 0, 0);"></p>
 		<div class="mb-3">
 			<label for="nombre" class="form-label">Nombre:</label>
-			<input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" name="nombre"
-				placeholder="Ingrese su nombre...">
+			<input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" name="nombre" th:value="${perso.nombre}">
 			<label for="file" class="form-label">Imagen:</label>
 			<input type="file" class="form-control" id="file" aria-describedby="emailHelp" name="imagen">
 			<label for="edad" class="form-label">Edad:</label>
-			<input type="text" class="form-control" id="edad" aria-describedby="emailHelp" name="edad"
-				placeholder="Ingrese su edad...">
+			<input type="text" class="form-control" id="edad" aria-describedby="emailHelp" name="edad" th:value="${perso.edad}">
 			<label for="peso" class="form-label">Peso:</label>
-			<input type="text" class="form-control" id="peso" aria-describedby="emailHelp" name="peso"
-				placeholder="Ingrese su peso...">
+			<input type="text" class="form-control" id="peso" aria-describedby="emailHelp" name="peso" th:value="${perso.peso}">
 			<label for="historia" class="form-label">Historia:</label>
-			<input type="text" class="form-control" id="historia" aria-describedby="emailHelp" name="historia"
-				placeholder="Ingrese historia...">
+			<input type="text" class="form-control" id="historia" aria-describedby="emailHelp" name="historia" th:value="${perso.historia}">
 		</div>
 		<div class="mb-3 form-check">
 			<label class="form-check-label" for="exampleCheck1">Recordar</label>

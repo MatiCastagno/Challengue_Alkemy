@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Biblioteca</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body>
+	<div th:replace="fragments :: navbar"></div>
+	<p th:if="${titulo != null}" th:text="${titulo}" style="color: rgb(0, 0, 0);"></p>
+	<form th:action="@{/usuario/registrarUsuario}" method="POST">
+		<div class="mb-3">
+			<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
+			<label>NOMBRE DE USUARIO:</label>
+			<input type="text" class="form-control" name="nombre" placeholder="Ingrese su username..."	th:value="${nombre}">
+			<label>MAIL:</label>
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="basic-addon1">@</span>
+				<input type="text" class="form-control" name="mail" placeholder="Ingrese su mail..." aria-label="Username" aria-describedby="basic-addon1" th:value="${mail}">
+			</div>
+			<label>CLAVE:</label>
+			<input type="password" class="form-control" name="clave" placeholder="******">
+			<label>CONFIRMACION DE CLAVE:</label>
+			<input type="password" class="form-control" name="clave2" placeholder="******">
+		</div>
+		<div class="mb-3 form-check">
+			<label class="form-check-label" for="exampleCheck1">Recordar</label>
+			<input type="checkbox" class="form-check-input" id="exampleCheck1">
+		</div>
+		<button type="submit" class="btn btn-warning">Guardar</button>
+	</form>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

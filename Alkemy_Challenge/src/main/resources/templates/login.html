@@ -5,31 +5,25 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Biblioteca</title>
+	<title>Formulario</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 
 <body>
 	<div th:replace="fragments :: navbar"></div>
-	<form th:action="@{/Perso/guardarPerso}" method="POST" enctype="multipart/form-data">
+	<div th:if="${param.logout}" class="alert-success alert-dismissible fade show mt-3" role="alert">
+		<span>Has finalizado la sesión con exito.</span>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+	</div>
+	<form th:action="@{/logincheck}" method="POST">
 		<p th:if="${error != null}" th:text="${error}" style="color: red;"></p>
-		<p th:if="${titulo != null}" th:text="${titulo}" style="color: rgb(0, 0, 0);"></p>
 		<div class="mb-3">
-			<label for="nombre" class="form-label">Nombre:</label>
+			<label for="nombre" class="form-label">Nombre de usuario:</label>
 			<input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" name="nombre"
-				placeholder="Ingrese su nombre...">
-			<label for="file" class="form-label">Imagen:</label>
-			<input type="file" class="form-control" id="file" aria-describedby="emailHelp" name="imagen">
-			<label for="edad" class="form-label">Edad:</label>
-			<input type="text" class="form-control" id="edad" aria-describedby="emailHelp" name="edad"
-				placeholder="Ingrese su edad...">
-			<label for="peso" class="form-label">Peso:</label>
-			<input type="text" class="form-control" id="peso" aria-describedby="emailHelp" name="peso"
-				placeholder="Ingrese su peso...">
-			<label for="historia" class="form-label">Historia:</label>
-			<input type="text" class="form-control" id="historia" aria-describedby="emailHelp" name="historia"
-				placeholder="Ingrese historia...">
+				placeholder="Ingrese su nombre..." th:text="${username}">
+			<label for="password" class="form-label">Contraseña:</label>
+			<input type="password" class="form-control" id="password" aria-describedby="emailHelp" name="password">
 		</div>
 		<div class="mb-3 form-check">
 			<label class="form-check-label" for="exampleCheck1">Recordar</label>
@@ -37,6 +31,7 @@
 		</div>
 		<button type="submit" class="btn btn-primary">Guardar</button>
 	</form>
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
 		crossorigin="anonymous"></script>
