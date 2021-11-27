@@ -2,6 +2,7 @@ package com.example.demo.servicios;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -23,12 +24,16 @@ import com.example.demo.entidades.Usuario;
 import com.example.demo.enums.Role;
 import com.example.demo.errores.errorService;
 import com.example.demo.repositorios.RepositorioUsuario;
+import com.example.demo.servicios.MailSender.EnvioMail;
 
 @Service
 public class ServiUsuario implements UserDetailsService{
 
 	@Autowired
-	RepositorioUsuario repoUsuario;
+	private RepositorioUsuario repoUsuario;
+	
+	@Autowired
+	private EnvioMail senderService;
 	
 	private static void validar(String nombre, String email, String clave, String clave2) throws errorService {
 		
@@ -44,7 +49,7 @@ public class ServiUsuario implements UserDetailsService{
 		
 		Pattern p1 = Pattern.compile("^[a-zA-Z]+$");
 		Pattern p3 = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+[.][A-Za-z]{2,}$");
-		Pattern p5 = Pattern.compile("^[A-Z]{1}[a-z]{1,}+[0-9]{1,}+[._%+-]{1,}+$");
+		//Pattern p5 = Pattern.compile("^[A-Z]{1}[a-z]{1,}+[0-9]{1,}+[._%+-]{1,}+$");
 		
 		Matcher mNombre = p1.matcher(nombre);
 		Matcher mEmail = p3.matcher(email);
@@ -58,6 +63,7 @@ public class ServiUsuario implements UserDetailsService{
 			//throw new errorService("Inicie con una Mayuscula, ademas debe inculir una MIN, un numero y un simbolo en (Clave)");
 		//}
 	}
+	
 	
 	@Transactional
 	public void registarUsuario(String nombre, String email, String clave, String clave2) throws errorService {
@@ -74,6 +80,8 @@ public class ServiUsuario implements UserDetailsService{
 		user.setRol(Role.USER);
 		
 		repoUsuario.save(user);
+		
+		senderService.sendEmaill(email);
 	}
 	
 	public void modificarUsuario(String id, String nombre, String email, String clave, String clave2) throws errorService {
